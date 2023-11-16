@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link rel="stylesheet" href="resources/css/style.css" />
+  </head>
+  <body>
+    <div class="login-form">
+      <h2>Registro con Node JS</h2>
+
+      <form action="register" method="post">
+        <label for="user">Nombre de usuario</label>
+
+        <input type="text" name="user" id="user" placeholder="User" required />
+
+        <label for="pass">Contraseña</label>
+        <input
+          type="password"
+          name="pass"
+          placeholder="Contraseña"
+          required
+        />
+
+        <input type="submit" class="btn-login" value="Guardar" />
+      </form>
+
+      <a href="/" class="btn-register">Cancelar</a>
+    </div>
+  </body>
+</html>
