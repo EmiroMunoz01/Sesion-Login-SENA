@@ -56,13 +56,21 @@ app.post("/register", async (req, res) => {
 
   let passwordHash = await bcryptjs.hash(pass, 8);
   connection.query(
-    "INSERT INTO users SET ?",
+    "INSERT INTO usuarios SET ?",
     { usuario: user, nombre: name, rol: rol, pass: passwordHash },
     async (error, results) => {
       if (error) {
         console.log(error);
       } else {
-        res.send("ALTA EXITOSA");
+        res.render("register", {
+          alert: true,
+          alertTitle: 'Registration',
+          alertMessage: '¡Registro exitoso!',
+          alertIcon: 'success',
+          showConfirmButton: false,
+          time: 1500,
+          ruta: '',
+        });
       }
     }
   );

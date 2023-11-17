@@ -11,7 +11,6 @@
       <h2>Registro con Node JS</h2>
 
       <form action="/register" method="post">
-
         <label for="user">Nombre de usuario</label>
         <input type="text" name="user" id="user" placeholder="User" required />
 
@@ -19,19 +18,33 @@
         <input type="text" name="name" id="name" placeholder="Name" required />
 
         <label for="rol">Rol</label>
-       <select name="rol" id="rol" class="select-css">
-        <option value="admin" selected>Administrador</option>
-        <option value="data entry">Data Entry</option>
-       </select>
+        <select name="rol" id="rol" class="select-css">
+          <option value="admin" selected>Administrador</option>
+          <option value="data entry">Data Entry</option>
+        </select>
 
         <label for="pass">Contraseña</label>
         <input type="password" name="pass" placeholder="Contraseña" required />
-
 
         <input type="submit" class="btn-login" value="Guardar" />
       </form>
 
       <a href="/" class="btn-register">Cancelar</a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <% if(typeof alert != 'undefined'){ %>
+        <script>
+        Swal.fire({
+            title: "<%= alertTitle %>",
+            text: "<%= alertMessage %>",
+            icon: "<%= alertIcon %>",
+            showConfirmButton: "<%= showConfirmButton %>",
+            time: "<%= time %>",
+        }).then(() => {
+            window.location = "/ <%= ruta %>";
+        });
+        </script>
+    <% } %>
   </body>
 </html>
