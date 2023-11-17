@@ -28,12 +28,12 @@ app.use(
 );
 
 const conexion = require("./database/db");
-
+const connection = require("./database/db");
 
 //aqui estan las rutas de la pagina
 
 app.get("/", (req, res) => {
-  res.render("index",{msg: 'Esto es un mensaje desde NodeJS'});
+  res.render("index", { msg: "Esto es un mensaje desde NodeJS" });
 });
 
 app.get("/login", (req, res) => {
@@ -44,7 +44,29 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+//Registrar usuario
 
+app.post("/register", async (req, res) => {
+  const user = req.body.user;
+  const name = req.body.name;
+  const rol = req.body.rol;
+  const pass = req.body.pass;
+
+  //almacenaremos encriptada la contrasena
+
+  let passwordHash = await bcryptjs.hash(pass, 8);
+  connection.query(
+    "INSERT INTO users SET ?",
+    { usuario: user, nombre: name, rol: rol, pass: passwordHash },
+    async (error, results) => {
+      if (error) {
+        console.log(error);
+      } else {
+        res.send("ALTA EXITOSA");
+      }
+    }
+  );
+});
 app.listen(3000, (req, res) => {
   console.log("Server Runing in http://localhost:3000");
 });
